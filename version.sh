@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
-VERSION=$(curl -sL https://cachyos.org/download/ | awk -F '(cachyos-desktop-linux-|.iso)' '/cachyos-desktop-linux-/{print $3;exit}')
-echo "${VERSION}"
+VERSION=$(curl -s https://cachyos.org/download/ | grep -o 'https://cdn77.cachyos.org/ISO/desktop/[^"]*' | sed -n 's|.*/desktop/\([0-9]*\)/.*|\1|p' | head -n 1)
+echo "$VERSION"
